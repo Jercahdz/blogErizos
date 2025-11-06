@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS comentarios;
+USE comentarios;
+
+CREATE TABLE IF NOT EXISTS comentarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    comentario TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO comentarios (nombre, comentario) VALUES
+    ('Jane Doe', '¡Este blog es increíble!, Me encantan los erizos de tierra y este blog da buena informacion al respecto'),
+    ('Jerson', 'Me encanta aprender sobre erizos. Gracias por compartir la información.');
