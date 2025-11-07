@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>El Erizo Feliz - Blog</title>
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <header class="text-center mt-4">
+        <div class="d-flex align-items-center justify-content-center">
+          <img src="images/logo.png" alt="Logo del Blog" class="img-fluid mr-3"
+            style="max-width: 100px;">
+          <h1 class="mb-0">El Erizo Feliz</h1>
+        </div>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+        <a class="navbar-brand" href="index.html">Inicio</a>
+        <a class="navbar-brand" href="blog.html">Blog</a>
+      </nav>
+
+      <section class="mt-5">
+        <section>
+          <h2>El Erizo Feliz</h2>
+        </section>
+
+        <section>
+          <img src="images/cabecera.png" alt="Imagen de Cabecera"
+            class="img-fluid">
+        </section>
+
+        <section class="mt-5">
+          <section>
+            <h2>Erizos de Tierra</h2>
+            <p>Los erizos de tierra son pequeños mamíferos cubiertos de púas que
+              pertenecen a la familia Erinaceidae.
+              A diferencia de sus parientes marinos, los erizos de tierra son
+              animales terrestres que se
+              encuentran en diversas partes del mundo.</p>
+            <img src="images/erizobola.jpeg" class="img-fluid mr-3"
+              style="max-width: 350px;">
+          </section>
+
+          <section>
+            <h2>Curiosidades</h2>
+            <p>Los erizos son conocidos por sus comportamientos únicos.
+              Algunas curiosidades sobre ellos incluyen su capacidad para
+              enrollarse en una bola como defensa,
+              su aguda audición y olfato, y su dieta variada que incluye
+              insectos, frutas y verduras.</p>
+            <img src="images/erizoOk.jpg" class="img-fluid mr-3"
+              style="max-width: 250px;">
+          </section>
+
+          <section class="mt-4">
+            <h2>Cuidados Básicos</h2>
+            <p>Cuando decides tener un erizo como mascota, es importante
+              proporcionarles cuidados adecuados.
+              Algunos consejos para el cuidado de los erizos incluyen la
+              provisión de un recinto adecuado,
+              una dieta equilibrada, y tiempo para socializar con ellos de
+              manera suave y tranquila.</p>
+            <p>Recuerda que cada erizo es único, por lo que es esencial conocer
+              las necesidades específicas
+              de tu mascota y brindarle un ambiente feliz y saludable.</p>
+            <img src="images/erizosinfo.jpg" class="img-fluid mr-3"
+              style="max-width: 500px;">
+          </section>
+
+          <section class="mt-4">
+            <h3>Deja tu Comentario</h3>
+            <form id="formulario-comentario">
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="comentario">Comentario:</label>
+                <textarea class="form-control" id="comentario" rows="3"
+                  required></textarea>
+              </div>
+              <button type="button" class="btn btn-color"
+                id="agregar-comentario">Agregar Comentario</button>
+            </form>
+          </section>
+
+          <section class="mt-4 mb-5">
+            <h3>Comentarios</h3>
+            <div id="comentarios-container">
+              <div class="no-comentarios">
+                Aún no hay comentarios. ¡Sé el primero en comentar!
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+      <script>
+    $(document).ready(function() {
+      cargarComentarios();
+
+      $("#agregar-comentario").click(function() {
+        var nombre = $("#nombre").val().trim();
+        var comentario = $("#comentario").val().trim();
+
+        if (!nombre || !comentario) {
+          alert("Por favor completa todos los campos");
+          return;
+        }
+
+        // Obtener comentarios existentes
+        var comentarios = JSON.parse(localStorage.getItem('comentarios-erizo')) || [];
+        
+        // Crear nuevo comentario
+        var nuevoComentario = {
+          id: Date.now(),
+          nombre: nombre,
+          comentario: comentario,
+          fecha: new Date().toLocaleDateString('es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+        };
+        
+        // Agregar al array
+        comentarios.push(nuevoComentario);
+        
+        // Guardar en localStorage
+        localStorage.setItem('comentarios-erizo', JSON.stringify(comentarios));
+        
+        // Limpiar formulario
+        $("#nombre, #comentario").val("");
+        
+        // Recargar comentarios
+        cargarComentarios();
+      });
+
+      $(document).on("click", ".eliminar-comentario", function() {
+        var comentarioId = $(this).data("id");
+        
+        if (confirm("¿Estás seguro de eliminar este comentario?")) {
+          // Obtener comentarios
+          var comentarios = JSON.parse(localStorage.getItem('comentarios-erizo')) || [];
+          
+          // Filtrar el comentario a eliminar
+          comentarios = comentarios.filter(function(c) {
+            return c.id !== comentarioId;
+          });
+          
+          // Guardar cambios
+          localStorage.setItem('comentarios-erizo', JSON.stringify(comentarios));
+          
+          // Recargar comentarios
+          cargarComentarios();
+        }
+      });
+
+      function cargarComentarios() {
+        var comentarios = JSON.parse(localStorage.getItem('comentarios-erizo')) || [];
+        var html = '';
+        
+        if (comentarios.length === 0) {
+          html = '<div class="no-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</div>';
+        } else {
+          comentarios.forEach(function(comentario) {
+            html += '<div class="comentario-card">';
+            html += '  <div class="comentario-nombre">' + comentario.nombre + '</div>';
+            html += '  <div class="comentario-fecha">' + comentario.fecha + '</div>';
+            html += '  <div class="comentario-texto">' + comentario.comentario + '</div>';
+            html += '  <button class="eliminar-comentario" data-id="' + comentario.id + '">Eliminar</button>';
+            html += '</div>';
+          });
+        }
+        
+        $("#comentarios-container").html(html);
+      }
+    });
+  </script>
+    </body>
+  </html>
