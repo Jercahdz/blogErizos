@@ -1,57 +1,120 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-  }
-  
-  .container {
-    max-width: 800px;
-  }
-  
-  header {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-  }
-  
-  h1 {
-    color: #1d7c38;
-  }
-  
-  .navbar {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .navbar-brand {
-    font-weight: bold;
-  }
-  
-  .navbar a.navbar-brand, .navbar a.navbar-brand:hover,
-  .navbar a.navbar-nav .nav-link, .navbar a.navbar-nav .nav-link:hover {
-    color: #1d7c38;
-    text-decoration: none;
-  }
-  
-  .navbar a.navbar-brand:hover, .navbar a.navbar-nav .nav-link:hover {
-    color: #000000;
-  }
-  
-  section {
-    margin-bottom: 30px;
-  }
-  
-  img.img-fluid {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2, h3 {
-    color: #1d7c38;
-  }
-  
-  .btn-color {
-    background-color: #1d7c38;
-    color: #fff;
-  }
-  
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 800px;
+}
+
+header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+h1 {
+  color: #1d7c38;
+}
+
+.navbar {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar a.navbar-brand,
+.navbar a.navbar-brand:hover,
+.navbar a.navbar-nav .nav-link,
+.navbar a.navbar-nav .nav-link:hover {
+  color: #1d7c38;
+  text-decoration: none;
+}
+
+.navbar a.navbar-brand:hover,
+.navbar a.navbar-nav .nav-link:hover {
+  color: #000000;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+img.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+  color: #1d7c38;
+}
+
+.btn-color {
+  background-color: #1d7c38;
+  color: #fff;
+}
+
+.btn-color:hover {
+  background-color: #155d2a;
+  color: #fff;
+}
+
+.img-fluid {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para comentarios */
+.comentario-card {
+  background-color: white;
+  border-left: 4px solid #1d7c38;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-nombre {
+  font-weight: bold;
+  color: #1d7c38;
+  margin-bottom: 5px;
+}
+
+.comentario-fecha {
+  font-size: 0.85em;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.comentario-texto {
+  color: #333;
+}
+
+.eliminar-comentario {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.eliminar-comentario:hover {
+  background-color: #c82333;
+}
+
+.no-comentarios {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-style: italic;
+  background-color: white;
+  border-radius: 5px;
+}
